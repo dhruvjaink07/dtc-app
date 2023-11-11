@@ -1,18 +1,15 @@
+import 'package:dtc__application/Utils/colors.dart';
 import 'dart:convert';
-import 'package:dtc__application/Events/colors.dart';
-import 'package:dtc__application/Events/dynamicCard.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-// enum category { Events }
-
+// DataModel (EventData & Upcoming Events)--------> [Start]
 class EventData {
   final String event_title;
   final String event_speaker;
   final String event_date;
   final String event_desc;
   final String event_img;
-  // final String upcoming_event_img;
 
   EventData({
     required this.event_title,
@@ -20,7 +17,6 @@ class EventData {
     required this.event_date,
     required this.event_img,
     required this.event_desc,
-    // required this.upcoming_event_img,
   });
 
   factory EventData.fromJson(Map<String, dynamic> json) => EventData(
@@ -29,7 +25,6 @@ class EventData {
       event_date: json['event_date'],
       event_img: json['event_img'],
       event_desc: json['event_desc']);
-  // upcoming_event_img: json['upcoming_img']);
 }
 
 class UpcomingEventData {
@@ -57,6 +52,9 @@ class UpcomingEventData {
       );
 }
 
+// DataModel (EventData & Upcoming Events) <--------[END]
+
+// EventsPage Widget --------> [Start]
 class Events extends StatefulWidget {
   const Events({super.key});
 
@@ -65,9 +63,8 @@ class Events extends StatefulWidget {
 }
 
 class _EventsPageState extends State {
-  List<EventData> upcomingEvents = [];
+  List<EventData> oldEvents = [];
   List<EventData> newEvents = [];
-  
 
   @override
   void initState() {
@@ -75,6 +72,7 @@ class _EventsPageState extends State {
     fetchUpcomingEvents();
   }
 
+// Function for Fetching the Events Data
   fetchUpcomingEvents() async {
     final url = Uri.parse(
         "https://dtcapplication-1d801-default-rtdb.firebaseio.com/events.json");
@@ -84,12 +82,10 @@ class _EventsPageState extends State {
       var jsonData = response.body;
 
       // Now you have the JSON data as a string in the jsonData variable
-      print(jsonData);
+      // print(jsonData);
 
       // You can parse the JSON string as needed
       Map<String, dynamic> extractedData = json.decode(jsonData);
-
-      // Rest of your processing here...
       final List<EventData> loadedEvents = [];
       extractedData.forEach((eventId, eventData) {
         final eventTitle = eventData['event_title'] as String;
@@ -119,12 +115,13 @@ class _EventsPageState extends State {
       });
 
       setState(() {
-        upcomingEvents = loadedEvents;
+        oldEvents = loadedEvents;
         newEvents = loadedUpComingEvents;
       });
     }
   }
 
+// Widget Starts Here.....
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -134,28 +131,25 @@ class _EventsPageState extends State {
         initialIndex: 0,
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('E V E N T S', 
-              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),
-              fontSize: 18,
-              fontWeight: FontWeight.bold),  
+              backgroundColor: AppColors.background1,
+              title: const Text(
+                'Events',
+                style: TextStyle(color: AppColors.headingtext1),
               ),
-              backgroundColor:Color.fromARGB(255, 57, 37, 120) ,
               centerTitle: true,
-              bottom: const TabBar(
-                indicatorColor:Color.fromARGB(255, 57, 37, 120),
-                tabs: [
+              bottom:
+                  const TabBar(indicatorColor: AppColors.headingtext1, tabs: [
                 Tab(
-                  child: Text('Upcoming',
-                   style: TextStyle(color: Colors.black87,
-                   fontSize:16,
-                   fontWeight: FontWeight.bold),
-                   ),
+                  child: Text(
+                    "Upcoming",
+                    style: TextStyle(color: AppColors.headingtext1),
+                  ),
                 ),
                 Tab(
-                  child: Text('Past ',
-                   style: TextStyle(color: Colors.black87,
-                   fontSize:16,
-                   fontWeight: FontWeight.bold),) ,
+                  child: Text(
+                    "Past Events",
+                    style: TextStyle(color: AppColors.headingtext1),
+                  ),
                 )
               ]),
             ),
@@ -163,16 +157,85 @@ class _EventsPageState extends State {
               (newEvents == 0)
                   ? Container(
                       width: width / 3,
-                      color: AppColors.background1,
-                      child:
-                          Center(child: Image.asset('assets/images/')),
+                      color: Colors.amber,
+                      child: Center(
+                          child: Image.asset('lib/assets/Empty_illus.png')),
                     )
-                  : DynamicCard(width: width, Events: [], events: newEvents),
-              DynamicCard(
+                  : CustomCard(width: width, Events: [], events: newEvents),
+              CustomCard(
                 width: width,
-                events: upcomingEvents,
+                events: oldEvents,
                 Events: [],
               )
             ])));
   }
 }
+// EventsPage Widget <------- [END]
+
+// Card Layout ---------> [Start]
+class CustomCard extends StatelessWidget {
+  const CustomCard({
+    super.key,
+    required this.width,
+    required List<EventData> Events,
+    required this.events,
+  });
+
+  final List<EventData> events;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(5),
+      child: ListView.builder(
+        itemCount: events.length,
+        itemBuilder: (context, index) {
+          final event = events[index];
+          return Container(
+            height: 130,
+            margin: const EdgeInsets.all(4),
+            child: Card(
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: width / 3,
+                    child: Image.asset(event.event_img),
+                  ),
+                  const SizedBox(width: 10), // Add some spacing
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          event.event_title,
+                          style: const TextStyle(
+                              fontSize: 20, color: AppColors.headingtext1),
+                        ),
+                        const SizedBox(
+                            height:
+                                5), // Add spacing between title and description
+                        Text(
+                          event.event_speaker,
+                          style:
+                              const TextStyle(fontSize: 14, color: Colors.grey),
+                        ),
+                        Text(
+                          event.event_date,
+                          style:
+                              const TextStyle(fontSize: 14, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+// Card Layout <--------- [END]

@@ -1,4 +1,4 @@
-import 'package:dtc__application/Events/colors.dart';
+import 'package:dtc__application/Utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class FAQPage extends StatefulWidget {
@@ -9,7 +9,7 @@ class FAQPage extends StatefulWidget {
 }
 
 class _FAQPageState extends State<FAQPage> {
-   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,48 +42,48 @@ class _FAQPageState extends State<FAQPage> {
           ),
         ],
       ),
-     endDrawer: Drawer(
-            child: ListView(
-              children: [
-                ListTile(
-                  title: Text('Home'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Home');
-                  },
-                ),
-                ListTile(
-                  title: Text('About'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'About');
-                  },
-                ),
-                ListTile(
-                  title: Text('Events'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Events');
-                  },
-                ),
-                ListTile(
-                  title: Text('Blogs'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Blogs');
-                  },
-                ),
-                ListTile(
-                  title: Text('FAQs'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'FAQ');
-                  },
-                ),
-                ListTile(
-                  title: Text('Connect'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Connect');
-                  },
-                ),
-              ],
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pushNamed(context, 'Home');
+              },
             ),
-          ),
+            ListTile(
+              title: Text('About'),
+              onTap: () {
+                Navigator.pushNamed(context, 'About');
+              },
+            ),
+            ListTile(
+              title: Text('Events'),
+              onTap: () {
+                Navigator.pushNamed(context, 'Events');
+              },
+            ),
+            ListTile(
+              title: Text('Blogs'),
+              onTap: () {
+                Navigator.pushNamed(context, 'Blogs');
+              },
+            ),
+            ListTile(
+              title: Text('FAQs'),
+              onTap: () {
+                Navigator.pushNamed(context, 'FAQ');
+              },
+            ),
+            ListTile(
+              title: Text('Connect'),
+              onTap: () {
+                Navigator.pushNamed(context, 'Connect');
+              },
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -125,22 +125,17 @@ class _FAQPageState extends State<FAQPage> {
                       height: MediaQuery.of(context).size.height * 0.07,
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: ElevatedButton(
-                        onPressed: () {
-      
-      
-      
-      
-                        },
+                        onPressed: () {},
                         child: Row(
                           children: [
                             Expanded(
                                 child: Text(
-                                  'What is diploma tech community ',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: AppColors.text),
-                                )),
+                              'What is diploma tech community ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: AppColors.text),
+                            )),
                             Container(
                               child: Icon(
                                 Icons.add,
@@ -165,12 +160,12 @@ class _FAQPageState extends State<FAQPage> {
                           children: [
                             Expanded(
                                 child: Text(
-                                  'How to join the community as a member? ',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: AppColors.text),
-                                )),
+                              'How to join the community as a member? ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: AppColors.text),
+                            )),
                             Container(
                               child: Icon(
                                 Icons.add,
@@ -195,12 +190,12 @@ class _FAQPageState extends State<FAQPage> {
                           children: [
                             Expanded(
                                 child: Text(
-                                  'How to join the organising team ',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: AppColors.text),
-                                )),
+                              'How to join the organising team ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: AppColors.text),
+                            )),
                             Container(
                               child: Icon(
                                 Icons.add,
@@ -225,12 +220,12 @@ class _FAQPageState extends State<FAQPage> {
                           children: [
                             Expanded(
                                 child: Text(
-                                  'What are the benefits of joining the diploma tech community',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: AppColors.text),
-                                )),
+                              'What are the benefits of joining the diploma tech community',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: AppColors.text),
+                            )),
                             Container(
                               child: Icon(
                                 Icons.add,
@@ -255,12 +250,12 @@ class _FAQPageState extends State<FAQPage> {
                           children: [
                             Expanded(
                                 child: Text(
-                                  'What type of events do we conduct ?',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: AppColors.text),
-                                )),
+                              'What type of events do we conduct ?',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: AppColors.text),
+                            )),
                             Container(
                               child: Icon(
                                 Icons.add,

@@ -1,4 +1,4 @@
-import 'package:dtc__application/Events/colors.dart';
+import 'package:dtc__application/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -102,7 +102,6 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
           ),
-
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -151,7 +150,7 @@ class _HomepageState extends State<Homepage> {
                     child: SingleChildScrollView(
                       child: Text(
                         'DTC Community is a Community for Diploma Student who are Coding Enthusiasts here we organise sessions , Workshops, Open Source , Programms,Hackathons, and Events on various emerging technologies and domains.'
-                            'Additionally,we share guided roadmaps  and help students learn & grow in the field of computer science ',
+                        'Additionally,we share guided roadmaps  and help students learn & grow in the field of computer science ',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black54,
@@ -168,7 +167,7 @@ class _HomepageState extends State<Homepage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
-          
+
                     //onTap: _launchURL,
                     Container(
                       height: MediaQuery.of(context).size.height * 0.05,
@@ -181,7 +180,7 @@ class _HomepageState extends State<Homepage> {
                           'Join Now',
                           style: TextStyle(
                               fontSize:
-                              MediaQuery.of(context).size.height * 0.015),
+                                  MediaQuery.of(context).size.height * 0.015),
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.background,
@@ -189,7 +188,7 @@ class _HomepageState extends State<Homepage> {
                                 borderRadius: BorderRadius.circular(30))),
                       ),
                     ),
-          
+
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
@@ -203,7 +202,7 @@ class _HomepageState extends State<Homepage> {
                           style: TextStyle(
                               color: AppColors.communityText,
                               fontSize:
-                              MediaQuery.of(context).size.height * 0.015,
+                                  MediaQuery.of(context).size.height * 0.015,
                               fontWeight: FontWeight.w400),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -230,8 +229,7 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
           ),
-        )
-      );
+        ));
   }
 
   void _openRightDrawer() {

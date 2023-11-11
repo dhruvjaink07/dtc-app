@@ -1,4 +1,4 @@
-import 'package:dtc__application/Events/colors.dart';
+import 'package:dtc__application/Utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatefulWidget {
@@ -15,83 +15,82 @@ class _AboutPageState extends State<AboutPage> {
     final Size screenSize = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/Background.jpeg',
-                ),
-                fit: BoxFit.cover)),
+          image: DecorationImage(
+              image: AssetImage(
+                'assets/Background.jpeg',
+              ),
+              fit: BoxFit.cover)),
       child: Scaffold(
         key: _scaffoldKey,
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Image.asset(
-                    'assets/logo-small.png',
-                    width: MediaQuery.of(context).size.width * 0.19,
-                    height: MediaQuery.of(context).size.height * 0.2,
-                  ),
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: Image.asset(
+                  'assets/logo-small.png',
+                  width: MediaQuery.of(context).size.width * 0.19,
+                  height: MediaQuery.of(context).size.height * 0.2,
                 ),
-              ],
+              ),
+            ],
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                _openRightDrawer();
+              },
             ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  _openRightDrawer();
+          ],
+        ),
+        endDrawer: Drawer(
+          child: ListView(
+            children: [
+              ListTile(
+                title: Text('Home'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'Home');
+                },
+              ),
+              ListTile(
+                title: Text('About'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'About');
+                },
+              ),
+              ListTile(
+                title: Text('Events'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'Events');
+                },
+              ),
+              ListTile(
+                title: Text('Blogs'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'Blogs');
+                },
+              ),
+              ListTile(
+                title: Text('FAQs'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'FAQ');
+                },
+              ),
+              ListTile(
+                title: Text('Connect'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'Connect');
                 },
               ),
             ],
           ),
-          endDrawer: Drawer(
-            child: ListView(
-              children: [
-                ListTile(
-                  title: Text('Home'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Home');
-                  },
-                ),
-                ListTile(
-                  title: Text('About'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'About');
-                  },
-                ),
-                ListTile(
-                  title: Text('Events'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Events');
-                  },
-                ),
-                ListTile(
-                  title: Text('Blogs'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Blogs');
-                  },
-                ),
-                ListTile(
-                  title: Text('FAQs'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'FAQ');
-                  },
-                ),
-                ListTile(
-                  title: Text('Connect'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'Connect');
-                  },
-                ),
-              ],
-            ),
-          ),
-
+        ),
         body: SingleChildScrollView(
           child: Container(
             color: AppColors.background,
@@ -109,16 +108,19 @@ class _AboutPageState extends State<AboutPage> {
                             color: AppColors.headingtext,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Arvo', 
+                            fontFamily: 'Arvo',
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           width: 50, // Set the width to your desired value
                           height: 1, // Set the height of the underline
                           decoration: BoxDecoration(
-                            color: AppColors.headingtext, // Color of the underline
-                            borderRadius: BorderRadius.circular(1), 
+                            color:
+                                AppColors.headingtext, // Color of the underline
+                            borderRadius: BorderRadius.circular(1),
                           ),
                         ),
                       ],
@@ -149,8 +151,8 @@ class _AboutPageState extends State<AboutPage> {
                       'assets/platform.png',
                     ),
                     _buildCard(
-                      screenSize, 
-                      'BEST TECHNICAL WORKSHOPS AND SESSIONS', 
+                      screenSize,
+                      'BEST TECHNICAL WORKSHOPS AND SESSIONS',
                       'assets/workshops.png',
                     ),
                     SizedBox(height: 20),
@@ -167,8 +169,9 @@ class _AboutPageState extends State<AboutPage> {
   Widget _buildCard(Size screenSize, String title, String imagePath) {
     double imageWidth = screenSize.width * 0.6;
     double imageHeight = screenSize.height * 0.25;
-    
-    double titleFontSize = screenSize.width * 0.05;  // Adjust this value as needed
+
+    double titleFontSize =
+        screenSize.width * 0.05; // Adjust this value as needed
 
     return GestureDetector(
       child: Card(
@@ -207,6 +210,7 @@ class _AboutPageState extends State<AboutPage> {
       ),
     );
   }
+
   void _openRightDrawer() {
     _scaffoldKey.currentState?.openEndDrawer();
   }
