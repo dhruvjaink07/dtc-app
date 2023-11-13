@@ -1,6 +1,7 @@
-import 'package:dtc__application/api/api.dart';
 import 'package:dtc__application/SampleCredPages/registerPage.dart';
+import 'package:dtc__application/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,22 +15,43 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController password = TextEditingController();
 
   Future<void> loginUser() async {
-    final success = await Api.loginUser(username.text, password.text);
+    final apiUrl =
+        'http://localhost:3000/auth/login'; // Replace with your actual API registration endpoint
 
-    if (success) {
-      // Navigate to the home screen or perform other actions
-      Navigator.pushReplacementNamed(context, "Home");
-    } else {
-      // Handle login failure
-      print('Login failed');
-      // Show an error message or take appropriate action
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        body: {
+          'username': username.text,
+          'password': password.text,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // Successful registration
+        print('Registration successful');
+        // Navigate to the login screen or perform other actions
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Homepage()));
+      } else {
+        // Handle registration failure
+        print('Registration failed: ${response.body}');
+        // Show an error message to the user
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Registration failed. Please try again.'),
+          backgroundColor: Colors.red,
+        ));
+      }
+    } catch (e) {
+      print('Error: $e');
+      // Handle other errors
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0x252525),
+      // backgroundColor: Color(0x252525),
       body: Container(
         margin: EdgeInsets.all(10),
         child: Column(
