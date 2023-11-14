@@ -1,15 +1,22 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
+var cors = require('cors');
 
 
 const app = express();
 const port = 3000; 
 
-// Body parser middleware
-app.use(bodyParser.json());
+
+app.use(cors())
+app.use(express.json())
+app.use(cors({ origin: 'http://localhost:' }));
+
+
+
+app.options('*', cors());
 const connectionString = 'mongodb+srv://imbetter27:dtcbackend094@cluster0.b1e7573.mongodb.net/CustomAuth';
 // console.log(process.env.DB_URI);
 

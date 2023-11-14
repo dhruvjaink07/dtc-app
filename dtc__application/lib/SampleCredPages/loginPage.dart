@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dtc__application/SampleCredPages/registerPage.dart';
 import 'package:dtc__application/homepage.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +17,22 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController password = TextEditingController();
 
   Future<void> loginUser() async {
-    final apiUrl =
+    const apiUrl =
         'http://localhost:3000/auth/login'; // Replace with your actual API registration endpoint
 
     try {
+      print('Username: ${username.text}');
+      print('Password: ${password.text}');
+
       final response = await http.post(
         Uri.parse(apiUrl),
-        body: {
+        headers: {
+          'Content-Type': 'application/json'
+        }, // Specify JSON content type
+        body: jsonEncode({
           'username': username.text,
           'password': password.text,
-        },
+        }),
       );
 
       if (response.statusCode == 200) {

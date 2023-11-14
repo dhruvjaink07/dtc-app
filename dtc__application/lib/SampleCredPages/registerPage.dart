@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dtc__application/SampleCredPages/loginPage.dart';
 import 'package:dtc__application/homepage.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +22,13 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
-        body: {
-          'username': username.text.toString(),
-          'password': password.text.toString(),
-        },
+        headers: {
+          'Content-Type': 'application/json'
+        }, // Specify JSON content type
+        body: jsonEncode({
+          'username': username.text,
+          'password': password.text,
+        }),
       );
 
       if (response.statusCode == 200) {
