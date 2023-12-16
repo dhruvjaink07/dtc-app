@@ -4,6 +4,7 @@ import 'package:dtc__application/SampleCredPages/registerPage.dart';
 import 'package:dtc__application/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -36,6 +37,13 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       if (response.statusCode == 200) {
+        // JWT -- Unstable
+        // final token = jsonDecode(response.body)['token'];
+        // Need to add other state management tool like Riverpod or Provider
+        // SharedPreferences prefs = await SharedPreferences.getInstance();
+        // prefs.setString('token', token);
+        // JWT
+
         // Successful registration
         print('Registration successful');
         // Navigate to the login screen or perform other actions

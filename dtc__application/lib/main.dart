@@ -11,11 +11,10 @@ import 'package:dtc__application/SampleCredPages/registerPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // final int serverPort;
   const MyApp({
     super.key,
   });
